@@ -21,7 +21,7 @@ pipeline {
         }
 
         stage('Test Docker Inside Jenkins pipeline') {
-            agent any  // Utilise un agent any pour exécuter des commandes Docker
+            agent { label 'master' }  // Utiliser l'agent master pour ce stage spécifique
             steps {
                 sh 'docker ps'
                 sh 'docker run --rm node:25-alpine node -v'
