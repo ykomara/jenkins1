@@ -21,6 +21,7 @@ pipeline {
         }
 
         stage('Test Docker Inside Jenkins pipeline') {
+            agent any  // Utilise un agent any pour exécuter des commandes Docker
             steps {
                 sh 'docker ps'
                 sh 'docker run --rm node:25-alpine node -v'
@@ -29,7 +30,7 @@ pipeline {
 
     
     }
-    
+
     post {
         always {
             echo 'Pipeline finished'
