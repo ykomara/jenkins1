@@ -19,16 +19,17 @@ pipeline {
                 sh 'npm -v'
             }
         }
+
+        stage('Test Docker Inside Jenkins pipeline') {
+            steps {
+                sh 'docker ps'
+                sh 'docker run --rm node:25-alpine node -v'
+            }
+        }
+
+    
     }
-
-    stage('Test Docker Inside Jenkins pipeline') {
-    steps {
-        sh 'docker ps'
-        sh 'docker run --rm node:25-alpine node -v'
-    }
-}
-
-
+    
     post {
         always {
             echo 'Pipeline finished'
