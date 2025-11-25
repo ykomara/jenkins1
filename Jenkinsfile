@@ -21,6 +21,14 @@ pipeline {
         }
     }
 
+    stage('Test Docker Inside Jenkins') {
+    steps {
+        sh 'docker ps'
+        sh 'docker run --rm node:25-alpine node -v'
+    }
+}
+
+
     post {
         always {
             echo 'Pipeline finished'
