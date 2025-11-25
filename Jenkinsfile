@@ -7,15 +7,13 @@ pipeline {
 
     options {
         timeout(time: 1, unit: 'HOURS') // permet de limiter le temps d'exécution du pipeline
+        timestamps() // ajoute des timestamps aux logs de la console
     }
 
     stages {
 
-        options {
-            timestamps() //ajoute l'heure à chaque ligne de log
-        }
-
         stage('Build') {
+
             steps {
                 sh 'node -v'
                 sh 'npm -v'
