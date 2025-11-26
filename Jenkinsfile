@@ -15,11 +15,9 @@ pipeline {
                 echo "Custom Text: ${params.CUSTOM_TEXT}"
                 echo "Running Tests: ${params.RUN_TESTS}"
                 echo "Deploying to environment: ${params.ENVIRONMENT}"
-                script {
-                    // Mask the secret key before printing (Jenkins also masks password parameters in console)
-                    def masked = (params.SECRET_KEY ?: '').replaceAll(/./, '*')
-                    echo "Using Secret Key: ${masked}"
-                }
+                // Do NOT manipulate or print password parameters (params.SECRET_KEY is a hudson.util.Secret)
+                // For security, avoid logging secrets at all. Show a fixed placeholder instead.
+                echo "Using Secret Key: (hidden)"
             }
         }
     }
