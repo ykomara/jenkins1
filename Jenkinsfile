@@ -10,12 +10,17 @@ pipeline {
 
     stages {
         stage('Build') {
-            echo "Building branch: ${BRANCH_NAME}"
-            echo "Custom Text: ${CUSTOM_TEXT}"
-            echo " Running Tests: ${RUN_TESTS}"
-            echo "Deploying to environment: ${ENVIRONMENT}"
-            echo "Using Secret Key: ${SECRET_KEY.replaceAll(/./, '*')}" // Mask the secret key
-            
+            steps {
+                echo "Building branch: ${params.BRANCH_NAME}"
+                echo "Custom Text: ${params.CUSTOM_TEXT}"
+                echo "Running Tests: ${params.RUN_TESTS}"
+                echo "Deploying to environment: ${params.ENVIRONMENT}"
+                script {
+                    // Mask the secret key before printing (Jenkins also masks password parameters in console)
+                    def masked = (params.SECRET_KEY ?: '').replaceAll(/./, '*')
+                    echo "Using Secret Key: ${masked}"
+                }
+            }
         }
     }
 }
