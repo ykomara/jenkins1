@@ -1,19 +1,11 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:25-alpine'
-        }
-    }
-
-    options {
-        timeout(time: 1, unit: 'HOURS') // permet de limiter le temps d'exécution du pipeline
-        timestamps() // ajoute des timestamps aux logs de la console
-    }
+    agent any  // exécute sur Jenkins (beaucoup plus rapide)
 
     stages {
-
         stage('Build') {
-
+            agent {
+                docker { image 'node:25-alpine' } // lance Docker SEULEMENT ici
+            }
             steps {
                 sh 'node -v'
                 sh 'npm -v'
@@ -21,18 +13,10 @@ pipeline {
         }
 
         stage('Test Docker Inside Jenkins pipeline') {
-            agent { label 'master' }  // Utiliser l'agent master pour ce stage spécifique
+            agent { label 'master' }
             steps {
                 sh 'docker ps'
             }
-        }
-
-    
-    }
-
-    post {
-        always {
-            echo 'Pipeline finished'
         }
     }
 }
