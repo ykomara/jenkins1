@@ -3,6 +3,7 @@ pipeline {
 
     triggers {
         cron('* * * * *') // vérifier les modifications chaque minute
+    }
     
 
     stages {
