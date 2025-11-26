@@ -13,7 +13,7 @@ pipeline {
         }
 
         stage('Test Docker Inside Jenkins pipeline') {
-            agent { label 'master' }
+            agent any  // exécute sur Jenkins
             steps {
                 sh 'docker ps'
             }
