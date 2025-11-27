@@ -1,8 +1,7 @@
 pipeline {
     agent any  
-
-    environment {
-        DEPLOY_ENV = "production" 
+    parameters {
+        booleanParam(name: 'DEPLOY_TO_PROD', defaultValue: false, description: ' Deploy to production?')   
     }
 
     stages {
@@ -14,11 +13,10 @@ pipeline {
 
         stage('Deploy') {
 
-
             when {
                 allOf {
                     branch 'main'
-                    environment name: 'DEPLOY_ENV', value: 'production' // only deploy to production if DEPLOY_ENV is set to 'production'
+                    equals expected: true, actual: params.DEPLOY_TO_PROD
                 }
             }
 
