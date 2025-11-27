@@ -11,7 +11,7 @@ pipeline {
         stage('Deploy') {
 
             when {
-                branch 'prod'
+                branch 'main'
             }
 
             steps {
