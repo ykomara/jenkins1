@@ -4,9 +4,10 @@ pipeline {
   
 
     stages {
-        failFast true
+        
         stage ('Build') {
             parallel {
+                failFast true
                 stage('Build frontend') {
                     steps {
                         echo "Build frontend !"
