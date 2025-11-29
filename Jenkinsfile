@@ -6,7 +6,7 @@ pipeline {
     stages {
         
         stage ('Build') {
-            parallel {
+            parallel (
                 failFast true
                 stage('Build frontend') {
                     steps {
@@ -19,7 +19,7 @@ pipeline {
                         echo "Build backend !"
                     }
                 }
-            }
+            )
 
         }
 
