@@ -1,24 +1,29 @@
 pipeline {
     agent any  
-    parameters {
-        booleanParam(name: 'DEPLOY_TO_PROD', defaultValue: false, description: ' Deploy to production?')   
-    }
+
+  
 
     stages {
-        stage('Build') {
-            steps {
-                echo "Build !"
-            }
-        }
+        failFast true
+        stage ('Build') {
+            parallel {
+                stage('Build frontend') {
+                    steps {
+                        echo "Build frontend !"
+                    }
+                }
 
-        stage('Deploy') {
-
-            when {
-                allOf {
-                    branch 'main'
-                    equals expected: true, actual: params.DEPLOY_TO_PROD
+                stage('Build backend') {
+                    steps {
+                        echo "Build backend !"
+                    }
                 }
             }
+
+        }
+
+
+        stage('Deploy') {
 
             steps {
                 echo "Deploy !"
