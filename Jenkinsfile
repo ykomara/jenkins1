@@ -25,6 +25,7 @@ pipeline {
                         steps {
                             echo "Testing on ${PLATFORM} with ${BROWSER}"
                         }
+                    }
                 }
             }
         }
