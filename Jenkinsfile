@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         gradle 'gradle9.4.0'
-        nodejs 'nodejs25'
+        nodejs 'node25'
     }
 
     stages {
