@@ -7,9 +7,12 @@ pipeline {
                 echo 'Sent email test'
             }
 
-            post {
-                success{
-                    emailext ( 
+        }
+    }
+
+    post {
+        success{
+                emailext ( 
                     to: 'yayakomara56@gmail.com', 
                     body: 'Build started.',
                     subject: 'Build Notification'
@@ -17,6 +20,4 @@ pipeline {
                 }
             }
 
-        }
-    }
 }
