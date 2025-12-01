@@ -14,8 +14,8 @@ pipeline {
         success{
                 emailext ( 
                     to: 'yayakomara56@gmail.com', 
-                    body: 'Build started.',
-                    subject: 'Build Notification'
+                    body: '${DEFAULT_CONTENT}',
+                    subject: '${DEFAULT_SUBJECT}'
                 )
                 }
             }
